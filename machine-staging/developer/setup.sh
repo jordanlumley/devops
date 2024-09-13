@@ -7,6 +7,7 @@ BLUE="\e[34m"
 GREEN="\e[32m"
 RED="\e[31m"
 ENDCOLOR="\e[0m"
+DEV_SDK_DIR="Development/sdk"
 
 output_info() {
     echo -e "${BLUE}$1${ENDCOLOR}"
@@ -98,6 +99,7 @@ else
     output_success "Slack installed successfully."
 fi
 
+
 # Step 7: Present the user with additional installation options
 output_info "Please select the additional tools you want to install:"
 ADDITIONAL=$(gum choose --no-limit "flutter" "postman" "go" "nvm")
@@ -121,9 +123,10 @@ for tool in $ADDITIONAL; do
             apt-get install -qq curl git unzip xz-utils zip libglu1-mesa clang cmake git ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
             FLUTTER_VERSION="3.19.4-stable"
             wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_$FLUTTER_VERSION.tar.xz
-            mkdir -p ~/Development/sdk
-            tar xf flutter_linux_$FLUTTER_VERSION.tar.xz -C ~/Development/sdk/flutter
+            mkdir -p $HOME/$DEV_SDK_DIR
+            tar xf flutter_linux_$FLUTTER_VERSION.tar.xz -C $HOME/$DEV_SDK_DIR/flutter
             rm flutter_linux_$FLUTTER_VERSION.tar.xz
+            echo "export PATH=\"\$PATH:\$HOME/$DEV_SDK_DIR/flutter/bin\"" >> ~/.bashrc
             ;;
         postman)
             snap install postman
