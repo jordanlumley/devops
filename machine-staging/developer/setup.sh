@@ -8,17 +8,19 @@ GREEN="\e[32m"
 RED="\e[31m"
 ENDCOLOR="\e[0m"
 DEV_SDK_DIR="Development/sdk"
+CHECK_MARK="\u2714"
+ERROR_MARK="\u274c"
 
 output_info() {
     echo -e "${BLUE}$1${ENDCOLOR}"
 }
 
 output_success() {
-    echo -e "${GREEN}$1${ENDCOLOR}"
+    echo -e "${GREEN}${CHECK_MARK}   $1${ENDCOLOR}"
 }
 
 output_error() {
-    echo -e "${RED}$1${ENDCOLOR}"
+    echo -e "${RED}${ERROR_MARK}   $1${ENDCOLOR}"
 }
 
 is_installed() {
