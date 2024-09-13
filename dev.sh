@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e  # Exit immediately if a command exits with a non-zero status
 
+source ~/.bashrc
+
 BLUE="\e[34m"
 GREEN="\e[32m"
 RED="\e[31m"
