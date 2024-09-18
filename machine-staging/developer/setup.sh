@@ -104,7 +104,7 @@ fi
 
 # Step 7: Present the user with additional installation options
 output_info "Please select the additional tools you want to install:"
-ADDITIONAL=$(gum choose --no-limit "flutter" "postman" "go" "nvm")
+ADDITIONAL=$(gum choose --no-limit "flutter" "postman" "go" "nvm" "hasura")
 if [ -z "$ADDITIONAL" ]; then
     output_error "No additional tools selected. Exiting..."
     exit 1
@@ -138,6 +138,9 @@ for tool in $ADDITIONAL; do
             ;;
         nvm)
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+            ;;
+        hasura)
+            curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | bash
             ;;
         *)
             output_error "Invalid selection."
